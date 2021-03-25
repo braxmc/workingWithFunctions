@@ -62,36 +62,77 @@
 
 // -----------------------------------------------------
 
-// LECTURE NUMBER 3
+// // LECTURE NUMBER 3
 
-// callback function
-const oneWord = function(str) {
-  return str.replace(/ /g, '').toLowerCase();
-}
-// callback function
-const upperFirstWord = function(str) {
-  const [first, ...others] = str.split(' ');
-  return [first.toUpperCase(), ...others].join(' ');
-}
+// // callback function
+// const oneWord = function(str) {
+//   return str.replace(/ /g, '').toLowerCase();
+// }
+// // callback function
+// const upperFirstWord = function(str) {
+//   const [first, ...others] = str.split(' ');
+//   return [first.toUpperCase(), ...others].join(' ');
+// }
 
-// Higher-order function
-const transformer = function(str, fn) {
-  console.log(`Original string: ${str}`);
-  console.log(`Transformed string: ${fn(str)}`);
+// // Higher-order function
+// const transformer = function(str, fn) {
+//   console.log(`Original string: ${str}`);
+//   console.log(`Transformed string: ${fn(str)}`);
 
-  console.log(`Transformed by ${fn.name}`);
-}
+//   console.log(`Transformed by ${fn.name}`);
+// }
 
-transformer('JavaScript is the best!', upperFirstWord);
+// transformer('JavaScript is the best!', upperFirstWord);
 
-transformer('Javascript is the best!', oneWord);
+// transformer('Javascript is the best!', oneWord);
 
-// high5 is the callback function
-const high5 = function() {
-  console.log('hello');
-}
+// // high5 is the callback function
+// const high5 = function() {
+//   console.log('hello');
+// }
 
-// Add event listener is the higher order function
-document.body.addEventListener('click', high5)
+// // Add event listener is the higher order function
+// document.body.addEventListener('click', high5)
 
-['Brax', 'Diana', 'Shawn'].forEach(high5);
+// ['Brax', 'Diana', 'Shawn'].forEach(high5);
+
+// -----------------------------------------------------
+
+// LECTURE NUMBER 4
+
+// Functions returning functions
+
+// const greet = function(greeting) {
+//   return function(name) {
+//     console.log(`${greeting}, ${name}`);
+//   }
+// }
+
+// const greeterHello = greet('Hello');
+
+// greeterHello('Brax');
+// greeterHello('Diana');
+
+// greet('Hello')('Shawn');
+
+// re-writing in arrow function challenge
+
+// // MY SOLUTION
+// const greet = (greeting) => {
+//   return (name) => {
+//     console.log(`${greeting}, ${name}`);
+//   }
+// }
+
+// const greeterHello = greet('Hi there');
+
+// greeterHello('Brax');
+// greet('Hey')('Diana')
+
+// // HIS SOLUTION
+// // one arrow function returning another
+// const greet = (greeting) => (name) => {
+//   console.log(`${greeting}, ${name}`);
+// }
+
+// greet('Hey there')('Dude')
