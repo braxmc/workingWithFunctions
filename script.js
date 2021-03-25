@@ -29,31 +29,69 @@
 
 // -----------------------------------------------------
 
-let flight = 'LH234';
-const brax = {
-  name: 'Braxton McCellan',
-  passport: 987654321
-}
+// // LECTURE NUMBER 2
 
-const checkIn = function(flightNum, passenger) {
-  flightNum = 'LH999';
-  flight = flightNum; // changes flight to flightNum
-  passenger.name = 'Mr.' + passenger.name;
+// let flight = 'LH234';
+// const brax = {
+//   name: 'Braxton McCellan',
+//   passport: 987654321
+// }
 
-  if(passenger.passport === 987654321) {
-    alert('Checked In');
-  } else {
-    alert('Wrong passport!');
-  }
-}
+// const checkIn = function(flightNum, passenger) {
+//   flightNum = 'LH999';
+//   flight = flightNum; // changes flight to flightNum
+//   passenger.name = 'Mr.' + passenger.name;
 
+//   if(passenger.passport === 987654321) {
+//     alert('Checked In');
+//   } else {
+//     alert('Wrong passport!');
+//   }
+// }
+
+// // checkIn(flight, brax);
+// // console.log(flight, brax);
+
+// const newPassport = function(person) {
+//   person.passport = Math.trunc(Math.random() * 10000000000);
+// }
+
+// newPassport(brax);
 // checkIn(flight, brax);
 // console.log(flight, brax);
 
-const newPassport = function(person) {
-  person.passport = Math.trunc(Math.random() * 10000000000);
+// -----------------------------------------------------
+
+// LECTURE NUMBER 3
+
+// callback function
+const oneWord = function(str) {
+  return str.replace(/ /g, '').toLowerCase();
+}
+// callback function
+const upperFirstWord = function(str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
 }
 
-newPassport(brax);
-checkIn(flight, brax);
-console.log(flight, brax);
+// Higher-order function
+const transformer = function(str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+
+  console.log(`Transformed by ${fn.name}`);
+}
+
+transformer('JavaScript is the best!', upperFirstWord);
+
+transformer('Javascript is the best!', oneWord);
+
+// high5 is the callback function
+const high5 = function() {
+  console.log('hello');
+}
+
+// Add event listener is the higher order function
+document.body.addEventListener('click', high5)
+
+['Brax', 'Diana', 'Shawn'].forEach(high5);
