@@ -190,3 +190,74 @@ console.log(swiss);
 
 // in modern javascript it is more common to use .call like this than .apply
 book.call(swiss, ...flightData)
+console.log(swiss);
+
+// -----------------------------------------------------
+
+// LECTURE NUMBER 6
+
+// BIND METHOD
+const bookEw = book.bind(euroWings);
+const bookSwiss = book.bind(swiss);
+const bookLH = book.bind(lufthansa);
+
+bookEw(111, 'Steven Williams');
+bookSwiss(123, 'Brax Mc')
+
+console.log(euroWings);
+console.log(swiss);
+
+const bookEw23 = book.bind(euroWings, 23);
+bookEw23('Nic Benns');
+console.log(euroWings);
+
+// With event listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function() {
+  console.log(this);
+  this.planes++
+  console.log(this.planes);
+}
+document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa)); // using bind to set this keyword to lufthansa
+
+// partial application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.10, 200));
+
+const addVat = addTax.bind(null, 0.23);
+// addVat = value => value + value * 0.23;
+console.log(addVat(200));
+console.log(addVat(23));
+
+// Mini Challenge
+// my solution using arrow functions
+const addTaxs = rate => value => {
+  return value + value * rate;
+}
+addTaxs(0.23)(100)
+
+const addSetRate = addTaxs(0.23);
+console.log(addSetRate(300))
+
+// his solution using regular functions
+const addTaxRate = function(rate) {
+  return function(value) {
+    return value + value * rate;
+  }
+}
+
+const addVat2 = addTaxRate(0.23);
+console.log(addVat2(200));
+
+// const greet = function(greeting) {
+//   return function(name) {
+//     console.log(`${greeting}, ${name}`);
+//   }
+// }
+
+
+// // HIS SOLUTION
+// // one arrow function returning another
+// const greet = (greeting) => (name) => {
+//   console.log(`${greeting}, ${name}`);
+// }
