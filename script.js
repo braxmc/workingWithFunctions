@@ -136,3 +136,57 @@
 // }
 
 // greet('Hey there')('Dude')
+
+// -----------------------------------------------------
+
+// LECTURE NUMBER 5
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // book: function() { }
+  book(flightNum, name) {
+    console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+    this.bookings.push({flight: `${this.iataCode}${flightNum}`, name})
+  },
+}
+
+lufthansa.book(239, 'Brax McClellan');
+lufthansa.book(666, 'Saint Luci');
+console.log(lufthansa);
+
+const euroWings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+}
+
+const book = lufthansa.book;
+
+// book(23, 'Diana Player'); THIS DOESN'T WORK
+
+// CALL METHOD
+// using .call set the THIS keyword to new object
+book.call(euroWings, 691, 'Diana Player');
+console.log(euroWings);
+
+book.call(lufthansa, 691, 'Shawn Player');
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+}
+
+book.call(swiss, 999, 'Richard Long');
+console.log(swiss);
+
+// APPLY METHOD
+const flightData = [583, 'Nana Dee'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+// in modern javascript it is more common to use .call like this than .apply
+book.call(swiss, ...flightData)
