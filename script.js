@@ -308,7 +308,6 @@
 //   }
 // }
 
-
 // document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
 
 // // Using different arrays
@@ -316,3 +315,34 @@
 // // [1, 5, 3, 9, 6, 1]
 // poll.displayResults.call({answers: [5, 2, 3]});
 // poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]}, 'string');
+
+// -----------------------------------------------------
+
+// // LECTURE NUMBER 8
+
+// THIS CAN BE CALLED MULTIPLE TIMES
+// const runOnce = function() {
+//   console.log('This will never run again');
+// }
+// runOnce();
+
+// THIS IS IMMEDIATLY INVOKED IIFE
+// function expression
+const isPublic = 24;
+(function() {
+  console.log('This will never run again');
+  const isPrivate = 23;
+  console.log(isPublic);
+})();
+
+// console.log(isPrivate);
+
+// arrow functions
+(() => console.log('This will also not run again'))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+console.log(isPrivate);
+console.log(notPrivate);
