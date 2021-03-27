@@ -139,115 +139,115 @@
 
 // -----------------------------------------------------
 
-// LECTURE NUMBER 5
+// // LECTURE NUMBER 5
 
-const lufthansa = {
-  airline: 'Lufthansa',
-  iataCode: 'LH',
-  bookings: [],
-  // book: function() { }
-  book(flightNum, name) {
-    console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
-    this.bookings.push({flight: `${this.iataCode}${flightNum}`, name})
-  },
-}
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   // book: function() { }
+//   book(flightNum, name) {
+//     console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+//     this.bookings.push({flight: `${this.iataCode}${flightNum}`, name})
+//   },
+// }
 
-lufthansa.book(239, 'Brax McClellan');
-lufthansa.book(666, 'Saint Luci');
-console.log(lufthansa);
+// lufthansa.book(239, 'Brax McClellan');
+// lufthansa.book(666, 'Saint Luci');
+// console.log(lufthansa);
 
-const euroWings = {
-  airline: 'Eurowings',
-  iataCode: 'EW',
-  bookings: [],
-}
+// const euroWings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// }
 
-const book = lufthansa.book;
+// const book = lufthansa.book;
 
-// book(23, 'Diana Player'); THIS DOESN'T WORK
+// // book(23, 'Diana Player'); THIS DOESN'T WORK
 
-// CALL METHOD
-// using .call set the THIS keyword to new object
-book.call(euroWings, 691, 'Diana Player');
-console.log(euroWings);
+// // CALL METHOD
+// // using .call set the THIS keyword to new object
+// book.call(euroWings, 691, 'Diana Player');
+// console.log(euroWings);
 
-book.call(lufthansa, 691, 'Shawn Player');
-console.log(lufthansa);
+// book.call(lufthansa, 691, 'Shawn Player');
+// console.log(lufthansa);
 
-const swiss = {
-  airline: 'Swiss Air Lines',
-  iataCode: 'LX',
-  bookings: [],
-}
+// const swiss = {
+//   airline: 'Swiss Air Lines',
+//   iataCode: 'LX',
+//   bookings: [],
+// }
 
-book.call(swiss, 999, 'Richard Long');
-console.log(swiss);
+// book.call(swiss, 999, 'Richard Long');
+// console.log(swiss);
 
-// APPLY METHOD
-const flightData = [583, 'Nana Dee'];
-book.apply(swiss, flightData);
-console.log(swiss);
+// // APPLY METHOD
+// const flightData = [583, 'Nana Dee'];
+// book.apply(swiss, flightData);
+// console.log(swiss);
 
-// in modern javascript it is more common to use .call like this than .apply
-book.call(swiss, ...flightData)
-console.log(swiss);
+// // in modern javascript it is more common to use .call like this than .apply
+// book.call(swiss, ...flightData)
+// console.log(swiss);
 
 // -----------------------------------------------------
 
-// LECTURE NUMBER 6
+// // LECTURE NUMBER 6
 
-// BIND METHOD
-const bookEw = book.bind(euroWings);
-const bookSwiss = book.bind(swiss);
-const bookLH = book.bind(lufthansa);
+// // BIND METHOD
+// const bookEw = book.bind(euroWings);
+// const bookSwiss = book.bind(swiss);
+// const bookLH = book.bind(lufthansa);
 
-bookEw(111, 'Steven Williams');
-bookSwiss(123, 'Brax Mc')
+// bookEw(111, 'Steven Williams');
+// bookSwiss(123, 'Brax Mc')
 
-console.log(euroWings);
-console.log(swiss);
+// console.log(euroWings);
+// console.log(swiss);
 
-const bookEw23 = book.bind(euroWings, 23);
-bookEw23('Nic Benns');
-console.log(euroWings);
+// const bookEw23 = book.bind(euroWings, 23);
+// bookEw23('Nic Benns');
+// console.log(euroWings);
 
-// With event listeners
-lufthansa.planes = 300;
-lufthansa.buyPlane = function() {
-  console.log(this);
-  this.planes++
-  console.log(this.planes);
-}
-document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa)); // using bind to set this keyword to lufthansa
+// // With event listeners
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function() {
+//   console.log(this);
+//   this.planes++
+//   console.log(this.planes);
+// }
+// document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa)); // using bind to set this keyword to lufthansa
 
-// partial application
-const addTax = (rate, value) => value + value * rate;
-console.log(addTax(0.10, 200));
+// // partial application
+// const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.10, 200));
 
-const addVat = addTax.bind(null, 0.23);
-// addVat = value => value + value * 0.23;
-console.log(addVat(200));
-console.log(addVat(23));
+// const addVat = addTax.bind(null, 0.23);
+// // addVat = value => value + value * 0.23;
+// console.log(addVat(200));
+// console.log(addVat(23));
 
-// Mini Challenge
-// my solution using arrow functions
-const addTaxs = rate => value => {
-  return value + value * rate;
-}
-addTaxs(0.23)(100)
+// // Mini Challenge
+// // my solution using arrow functions
+// const addTaxs = rate => value => {
+//   return value + value * rate;
+// }
+// addTaxs(0.23)(100)
 
-const addSetRate = addTaxs(0.23);
-console.log(addSetRate(300))
+// const addSetRate = addTaxs(0.23);
+// console.log(addSetRate(300))
 
-// his solution using regular functions
-const addTaxRate = function(rate) {
-  return function(value) {
-    return value + value * rate;
-  }
-}
+// // his solution using regular functions
+// const addTaxRate = function(rate) {
+//   return function(value) {
+//     return value + value * rate;
+//   }
+// }
 
-const addVat2 = addTaxRate(0.23);
-console.log(addVat2(200));
+// const addVat2 = addTaxRate(0.23);
+// console.log(addVat2(200));
 
 // const greet = function(greeting) {
 //   return function(name) {
@@ -261,3 +261,58 @@ console.log(addVat2(200));
 // const greet = (greeting) => (name) => {
 //   console.log(`${greeting}, ${name}`);
 // }
+
+// -----------------------------------------------------
+
+// // LECTURE NUMBER 7
+
+// Coding Challenge 1
+
+// 1. Create a method called 'registerNewAnswer' on the 'poll' object. The method does 2 things:
+//   1.1. Display a prompt window for the user to input the number of the selected option. The prompt should look like this:
+//         What is your favourite programming language?
+//         0: JavaScript
+//         1: Python
+//         2: Rust
+//         3: C++
+//         (Write option number)
+  
+//   1.2. Based on the input number, update the answers array. For example, if the option is 3, increase the value AT POSITION 3 of the array by 1. Make sure to check if the input is a number and if the number makes sense (e.g answer 52 wouldn't make sense, right?)
+// 2. Call this method whenever the user clicks the "Answer poll" button.
+// 3. Create a method 'displayResults' which displays the poll results. The method takes a string as an input (called 'type'), which can be either 'string' or 'array'. If type is 'array', simply display the results array as it is, using console.log(). This should be the default option. If type is 'string', display a string like "Poll results are 13, 2, 4, 1". 
+// 4. Run the 'displayResults' method at the end of each 'registerNewAnswer' method call.
+
+// const poll = {
+//   question: 'What is your favorite programming language?',
+//   options: ['0: Javascript', '1: Python', '2: Rust', '3: C++'],
+//   answers: new Array(4).fill(0),
+//   //this will generate [0, 0, 0, 0]
+//   registerNewAnswer() {
+//     // Get answer
+//     const answer = Number(
+//       prompt(`${this.question}\n${this.options.join('\n')}\n(Write option number)`)
+//     );
+
+//     // Update answer
+//     typeof answer === 'number' && answer < this.answers.length && this.answers[answer]++;
+
+//     this.displayResults()
+//     this.displayResults('string')
+//   },
+//   displayResults(type = 'array') {
+//     if(type === 'array') {
+//       console.log(this.answers);
+//     } else if(type === 'string') {
+//       console.log(`Poll results are ${this.answers.join(', ')}`);
+//     }
+//   }
+// }
+
+
+// document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+// // Using different arrays
+// // [5, 2, 3]
+// // [1, 5, 3, 9, 6, 1]
+// poll.displayResults.call({answers: [5, 2, 3]});
+// poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]}, 'string');
