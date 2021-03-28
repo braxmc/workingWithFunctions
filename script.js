@@ -379,44 +379,59 @@
 
 // EXAMPLE 1
 
-let f;
+// let f;
 
-const g = function() {
-  const a = 23;
-  f = function() {
-    console.log(a * 2);
-  }
-}
+// const g = function() {
+//   const a = 23;
+//   f = function() {
+//     console.log(a * 2);
+//   }
+// }
 
-const h = function() {
-  const b = 777;
-  f = function() {
-    console.log(b * 2);
-  }
-}
+// const h = function() {
+//   const b = 777;
+//   f = function() {
+//     console.log(b * 2);
+//   }
+// }
 
-// must call both functions, f is not a function until g is called
-g(); // shows nothing in log
-f(); // shows the correct answer in log
-console.dir(f);
+// // must call both functions, f is not a function until g is called
+// g(); // shows nothing in log
+// f(); // shows the correct answer in log
+// console.dir(f);
 
-// f will be re-assigned to the h function since h is called before f;
-h(); // shows nothing in log
-f(); // shows the correct answer in log
-console.dir(f);
+// // f will be re-assigned to the h function since h is called before f;
+// h(); // shows nothing in log
+// f(); // shows the correct answer in log
+// console.dir(f);
 
-// EXAMPLE 2
+// // EXAMPLE 2
 
-const boardPassengers = function(n, wait) {
-  const perGroup = n / 3;
+// const boardPassengers = function(n, wait) {
+//   const perGroup = n / 3;
 
-  setTimeout(function(){
-    console.log(`We are now boarding all ${n} passengers`);
-    console.log(`There are 3 groups, each with ${perGroup} passengers`);
-  }, wait * 1000)
+//   setTimeout(function(){
+//     console.log(`We are now boarding all ${n} passengers`);
+//     console.log(`There are 3 groups, each with ${perGroup} passengers`);
+//   }, wait * 1000)
 
-  console.log(`Will start boarding in ${wait} seconds`);
-}
+//   console.log(`Will start boarding in ${wait} seconds`);
+// }
 
-const perGroup = 1000; // closure has priority over stack
-boardPassengers(180, 3);
+// const perGroup = 1000; // closure has priority over stack
+// boardPassengers(180, 3);
+
+// -----------------------------------------------------
+
+// // LECTURE NUMBER 11
+
+// CODING CHALLENGE 2
+
+(function() {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  
+  document.querySelector('body').addEventListener('click', function() {
+    header.style.color = 'blue';
+  })
+}());
