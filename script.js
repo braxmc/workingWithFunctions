@@ -319,6 +319,7 @@
 // -----------------------------------------------------
 
 // // LECTURE NUMBER 8
+// IIFE Immedietly Invoke Function Expressions
 
 // THIS CAN BE CALLED MULTIPLE TIMES
 // const runOnce = function() {
@@ -328,21 +329,42 @@
 
 // THIS IS IMMEDIATLY INVOKED IIFE
 // function expression
-const isPublic = 24;
-(function() {
-  console.log('This will never run again');
-  const isPrivate = 23;
-  console.log(isPublic);
-})();
+// const isPublic = 24;
+// (function() {
+//   console.log('This will never run again');
+//   const isPrivate = 23;
+//   console.log(isPublic);
+// })();
 
+// // console.log(isPrivate);
+
+// // arrow functions
+// (() => console.log('This will also not run again'))();
+
+// {
+//   const isPrivate = 23;
+//   var notPrivate = 46;
+// }
 // console.log(isPrivate);
+// console.log(notPrivate);
 
-// arrow functions
-(() => console.log('This will also not run again'))();
+// -----------------------------------------------------
 
-{
-  const isPrivate = 23;
-  var notPrivate = 46;
+// // LECTURE NUMBER 9
+
+// Closures
+
+const secureBooking = function() {
+   let passengerCount = 0;
+
+   return function() {
+     passengerCount++;
+     console.log(`${passengerCount} passengers`);
+   }
 }
-console.log(isPrivate);
-console.log(notPrivate);
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
