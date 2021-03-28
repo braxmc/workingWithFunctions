@@ -354,17 +354,69 @@
 
 // Closures
 
-const secureBooking = function() {
-   let passengerCount = 0;
+// const secureBooking = function() {
+//    let passengerCount = 0;
 
-   return function() {
-     passengerCount++;
-     console.log(`${passengerCount} passengers`);
-   }
+//    return function() {
+//      passengerCount++;
+//      console.log(`${passengerCount} passengers`);
+//    }
+// }
+
+// const booker = secureBooking();
+
+// booker();
+// booker();
+// booker();
+
+// console.dir(booker)
+
+// -----------------------------------------------------
+
+// // LECTURE NUMBER 10
+
+// More closures examples
+
+// EXAMPLE 1
+
+let f;
+
+const g = function() {
+  const a = 23;
+  f = function() {
+    console.log(a * 2);
+  }
 }
 
-const booker = secureBooking();
+const h = function() {
+  const b = 777;
+  f = function() {
+    console.log(b * 2);
+  }
+}
 
-booker();
-booker();
-booker();
+// must call both functions, f is not a function until g is called
+g(); // shows nothing in log
+f(); // shows the correct answer in log
+console.dir(f);
+
+// f will be re-assigned to the h function since h is called before f;
+h(); // shows nothing in log
+f(); // shows the correct answer in log
+console.dir(f);
+
+// EXAMPLE 2
+
+const boardPassengers = function(n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function(){
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000)
+
+  console.log(`Will start boarding in ${wait} seconds`);
+}
+
+const perGroup = 1000; // closure has priority over stack
+boardPassengers(180, 3);
